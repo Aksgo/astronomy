@@ -6,44 +6,65 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Link from 'next/link';
-import { useState } from 'react';
 
 export default function BlogCard(props) {
-  const { title, description, image, link } = props;
+  const { title, disc, image, link } = props;
 
   return (
-    <div style={{ marginTop: 30, width: '100%', display: 'flex', justifyContent: 'center' }}>
-      {/* Wrap entire card inside a Link */}
-      <Link href={link} passHref target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+    <div className="w-full flex justify-center mt-8">
+      <Link href={link} passHref target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', width: '100%' }}>
         <Card
           sx={{
             display: 'flex',
-            flexDirection: { xs: 'column', sm: 'row' }, // Stack on small screens
-            alignItems: 'center',
-            width: '90%',
-            maxWidth: 1200,
-            height: { xs: 'auto', sm: 250 }, // Adjust height on smaller screens
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: 'stretch', // Stretches card to max height
+            width: '100%',
+            maxWidth: 1000,
+            minHeight: 350, // Ensures consistent min height for each row
+            boxShadow: 3,
+            borderRadius: '16px',
+            backgroundColor: '#fff',
           }}
-          className="rounded-xl"
         >
-          <CardActionArea sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, width: '100%' }}>
+          <CardActionArea
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              width: '100%',
+              height: '100%' // Ensures card action area stretches too
+            }}
+          >
             <CardMedia
               component="img"
               sx={{
-                width: { xs: '100%', sm: '60%' }, // Full width on small screens, 60% on larger screens
-                height: { xs: 200, sm: '100%' }, // Adjust height for responsiveness
+                width: { xs: '100%', sm: '40%' },
+                height: '100%', // Stretch the image height to fit the tallest card
                 objectFit: 'cover',
               }}
               image={image}
-              alt={`Image: ${title}`}
+              alt={`Image of ${title}`}
             />
-            <CardContent sx={{ width: { xs: '100%', sm: '40%' }, textAlign: 'left' }}>
-              <Typography gutterBottom variant="h5" component="div">
-                {title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {description}
-              </Typography>
+            <CardContent
+              sx={{
+                width: { xs: '100%', sm: '60%' },
+                textAlign: 'left',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                flexGrow: 1,
+                padding: 3,
+              }}
+            >
+              <div>
+                <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
+                  {title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {disc}
+                </Typography>
+              </div>
+              {/* Filler space for shorter cards */}
+              <div style={{ flexGrow: 1 }}></div>
             </CardContent>
           </CardActionArea>
         </Card>
