@@ -39,7 +39,6 @@ const Home = () => {
 
   return (
     <div className="bg-black min-h-screen">
-      {/* Hero Section */}
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 pt-24">
         <div className="text-center md:text-left max-w-2xl md:mt-20">
           <h1 className="text-white text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight">
@@ -65,12 +64,16 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="relative flex justify-center items-center mt-10 md:mt-0 w-60 sm:w-96">
-          <div className="absolute inset-0 -z-10">
+        <div className='flex items-center justify-center h-[50vh] md:h-screen container w-[80vw] md:w-[45vw] mr-4 md:mr-[70px]'>
+        <div className='bg-particle'>
             <ParticleEffect />
           </div>
-          <motion.div variants={heroVariants} animate="visible">
-            <Image src={Hero} alt="Astronomy Club Hero" width={300} height={300} className="w-full h-auto" />
+          <motion.div
+            className='image-hero'
+            variants={heroVariants}
+            animate="visible"
+          >
+            <Image src={Hero} height={300} width={300} alt="hero" />
           </motion.div>
         </div>
       </div>
@@ -96,7 +99,7 @@ const Home = () => {
       </div>
 
       <div className="fixed top-0 left-0 pointer-events-none" style={{ transform: `translate(${cursorPosition.x}px, ${cursorPosition.y}px)`, zIndex: 1000 }}>
-        <Image src={star} alt="Star Cursor" width={30} height={30} />
+          <Image src={star} alt="Star Cursor" width={30} height={30} />
       </div>
     </div>
   )
